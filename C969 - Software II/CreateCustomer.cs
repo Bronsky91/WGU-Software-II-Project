@@ -18,62 +18,20 @@ namespace C969___Software_II
         {
             InitializeComponent();
         }
-
-        public int createCountry(string timestamp, string userName)
+        
+        public int createRecord(string timestamp, string userName, string table, string partOfQuery)
         {
-            // Take country text and create a country record - return id that was created for country for next insert\
-            int countryId = DataHelper.createID("country");
-            string countryInsert = $"INSERT INTO country VALUES ('{countryId}', '{countryTextbox.Text}', '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
+            int recId = DataHelper.createID(table);
+            string recInsert = $"INSERT INTO {table}" +
+                $" VALUES ('{recId}', {partOfQuery}, '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
 
             MySqlConnection c = new MySqlConnection(DataHelper.conString);
             c.Open();
-            MySqlCommand cmd = new MySqlCommand(countryInsert, c);
+            MySqlCommand cmd = new MySqlCommand(recInsert, c);
             cmd.ExecuteNonQuery();
             c.Close();
-            return countryId;
-        }
 
-        public int createCity(int countryId, string timestamp, string userName)
-        {
-            // Take city and create a city record using country id - return city id for next insert
-            int cityId = DataHelper.createID("city");
-            string cityInsert = $"INSERT INTO city VALUES ('{cityId}', '{cityTextbox.Text}', '{countryId}', '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
-
-            MySqlConnection c = new MySqlConnection(DataHelper.conString);
-            c.Open();
-            MySqlCommand cmd = new MySqlCommand(cityInsert, c);
-            cmd.ExecuteNonQuery();
-            c.Close();
-            return cityId;
-        }
-
-        public int createAddress(int cityId, string timestamp, string userName)
-        {
-            // Take address, zip, phone, cityId, and countryID to create an address record - return address id for next insert
-            int addressId = DataHelper.createID("address");
-            string addressInsert = $"INSERT INTO address" +
-                $" VALUES ('{addressId}', '{addressTextbox.Text}', '', '{cityId}', '{zipTextbox.Text}', '{phoneTextbox.Text}', '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
-
-            MySqlConnection c = new MySqlConnection(DataHelper.conString);
-            c.Open();
-            MySqlCommand cmd = new MySqlCommand(addressInsert, c);
-            cmd.ExecuteNonQuery();
-            c.Close();
-            return addressId;
-        }
-
-        public void createCustomer(int addressId, string timestamp, string userName)
-        {
-            // Take the name, active bool, and addressID to create a customer record
-            int customerId = DataHelper.createID("customer");
-            string customerInsert = $"INSERT INTO customer" +
-                $" VALUES ('{customerId}', '{nameTextbox.Text}', '{addressId}', '{(activeYes.Checked ? 1 : 0)}', '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
-
-            MySqlConnection c = new MySqlConnection(DataHelper.conString);
-            c.Open();
-            MySqlCommand cmd = new MySqlCommand(customerInsert, c);
-            cmd.ExecuteNonQuery();
-            c.Close();
+            return recId;
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -81,10 +39,12 @@ namespace C969___Software_II
             string timestamp = DataHelper.createTimestamp();
             string userName = DataHelper.getCurrentUserName();
 
-            int countryId = createCountry(timestamp, userName);
-            int cityId = createCity(countryId, timestamp, userName);
-            int addressId = createAddress(cityId, timestamp, userName);
-            createCustomer(addressId, timestamp, userName);
+            // TODO: Create checks to see if fields are blank before running these creates.
+            int countryId = createRecord(timestamp, userName, "country", $"'{countryTextbox.Text}'");
+            int cityId = createRecord(timestamp, userName, "city", $"'{cityTextbox.Text}', '{countryId}'");
+            int addressId = createRecord(timestamp, userName, "address", $"'{addressTextbox.Text}', '', '{cityId}', '{zipTextbox.Text}', '{phoneTextbox.Text}'");
+            createRecord(timestamp, userName, "customer", $"'{nameTextbox.Text}', '{addressId}', '{(activeYes.Checked ? 1 : 0)}'");
+
             this.Close();
         }
 

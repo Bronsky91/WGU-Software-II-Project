@@ -92,7 +92,7 @@
     <Compile Include="CreateCustomer.Designer.cs">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateHelper.cs" />
+    <Compile Include="DataHelper.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
