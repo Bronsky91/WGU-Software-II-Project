@@ -19,7 +19,7 @@ namespace C969___Software_II
         public Login()
         {
             InitializeComponent();
-            Console.WriteLine(RegionInfo.CurrentRegion.ThreeLetterISORegionName);
+       
             if (CultureInfo.CurrentCulture.LCID == 2058)
             {
                 titleLabel.Text = "Por favor inicie sesión abajo";
@@ -31,31 +31,32 @@ namespace C969___Software_II
             }
         }
 
-        static public User UserFound(string userName, string password)
+        static public int UserFound(string userName, string password)
         {
             string connectionString = "server=52.206.157.109 ;database=U05jyp;uid=U05jyp;pwd=53688524521;";
             MySqlConnection c = new MySqlConnection(connectionString);
             c.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT active, userId FROM user WHERE userName = '" + userName + "' AND password = '" + password+"'", c);
+            MySqlCommand cmd = new MySqlCommand($"SELECT userId FROM user WHERE userName = '{userName}' AND password = '{password}'", c);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            User user = new User();
+
             if (rdr.HasRows)
             {
                 rdr.Read();
-                user.setUserid(Convert.ToInt32(rdr[0]));
+                DataHelper.setCurrentUserId(Convert.ToInt32(rdr[0]));
+                DataHelper.setCurrentUserName(userName);
                 rdr.Close(); c.Close();
-                return user;
+                return DataHelper.getCurrentUserId();
             }
-            return user;
+            return 0;
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (UserFound(username.Text, password.Text).getUserid() != 0)
+            if (UserFound(username.Text, password.Text) != 0)
             {
+                this.Hide();
                 MainForm MainForm = new MainForm();
                 MainForm.Show();
-                Close();
             }
             else
             {
