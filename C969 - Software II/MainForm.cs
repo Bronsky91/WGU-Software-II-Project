@@ -20,20 +20,20 @@ namespace C969___Software_II
 
         private void createCustomerButton_Click(object sender, EventArgs e)
         {
-            CreateCustomer CreateCustomer = new CreateCustomer();
-            CreateCustomer.Show();
+            CreateCustomer createCustomer = new CreateCustomer();
+            createCustomer.Show();
         }
 
         private void updateCustomerButton_Click(object sender, EventArgs e)
         {
-            UpdateCustomer UpdateCustomer = new UpdateCustomer();
-            UpdateCustomer.Show();
-
+            UpdateCustomer updateCustomer = new UpdateCustomer();
+            updateCustomer.Show();
         }
 
         private void deleteCustomerButton_Click(object sender, EventArgs e)
         {
-
+            DeleteCustomer deleteCustomer = new DeleteCustomer();
+            deleteCustomer.Show();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

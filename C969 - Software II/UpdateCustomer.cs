@@ -20,84 +20,6 @@ namespace C969___Software_II
 
         public static Dictionary<string, string> cForm = new Dictionary<string, string>();
 
-        static public int FindCustomer(string search)
-        {
-            int customerId;
-            string query;
-            if (int.TryParse(search, out customerId))
-            {
-                query = $"SELECT customerId FROM customer WHERE customerId = '{search.ToString()}'";
-            }
-            else
-            {
-                query = $"SELECT customerId FROM customer WHERE customerName LIKE '{search}'";
-            }
-            MySqlConnection c = new MySqlConnection(DataHelper.conString);
-            c.Open();
-            MySqlCommand cmd = new MySqlCommand(query, c);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                customerId = Convert.ToInt32(rdr[0]);
-                rdr.Close(); c.Close();
-                return customerId;
-            }
-            return 0;
-        }
-
-        static public Dictionary<string, string> getCustomerDetails(int customerId)
-        {
-            string query = $"SELECT * FROM customer WHERE customerId = '{customerId.ToString()}'";
-            MySqlConnection c = new MySqlConnection(DataHelper.conString);
-            c.Open();
-            MySqlCommand cmd = new MySqlCommand(query, c);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            rdr.Read();
-
-            Dictionary<string, string> customerDict = new Dictionary<string, string>();
-            // Customer Table Details
-            customerDict.Add("customerName", rdr[1].ToString());
-            customerDict.Add("addressId", rdr[2].ToString());
-            customerDict.Add("active", rdr[3].ToString());
-            rdr.Close();
-
-            query = $"SELECT * FROM address WHERE addressId = '{customerDict["addressId"]}'";
-            cmd = new MySqlCommand(query, c);
-            rdr = cmd.ExecuteReader();
-            rdr.Read();
-
-            // Address Table Details
-            customerDict.Add("address", rdr[1].ToString());
-            customerDict.Add("cityId", rdr[3].ToString());
-            customerDict.Add("zip", rdr[4].ToString());
-            customerDict.Add("phone", rdr[5].ToString());
-            rdr.Close();
-
-            query = $"SELECT * FROM city WHERE cityId = '{customerDict["cityId"]}'";
-            cmd = new MySqlCommand(query, c);
-            rdr = cmd.ExecuteReader();
-            rdr.Read();
-
-            // City Table Details
-            customerDict.Add("city", rdr[1].ToString());
-            customerDict.Add("countryId", rdr[2].ToString());
-            rdr.Close();
-
-            query = $"SELECT * FROM country WHERE countryId = '{customerDict["countryId"]}'";
-            cmd = new MySqlCommand(query, c);
-            rdr = cmd.ExecuteReader();
-            rdr.Read();
-
-            // Country Table Details
-            customerDict.Add("country", rdr[1].ToString());
-            rdr.Close();
-            c.Close();
-
-            return customerDict;
-        }
-
         public bool updateCustomer(Dictionary<string, string> updatedForm)
         {
             MySqlConnection c = new MySqlConnection(DataHelper.conString);
@@ -141,10 +63,10 @@ namespace C969___Software_II
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            int customerId = FindCustomer(searchBar.Text);
+            int customerId = DataHelper.FindCustomer(searchBar.Text);
             if (customerId != 0)
             {
-                cForm = getCustomerDetails(customerId);
+                cForm = DataHelper.getCustomerDetails(customerId);
                 nameTextbox.Text = cForm["customerName"];
                 phoneTextbox.Text = cForm["phone"];
                 addressTextbox.Text = cForm["address"];
