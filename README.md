@@ -1,4 +1,4 @@
-# C969---Software-II
+# WGU-Software-II-Project
 
 COMPETENCIES
 
