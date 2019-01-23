@@ -20,7 +20,7 @@ namespace C969___Software_II
         {
             InitializeComponent();
        
-            if (CultureInfo.CurrentCulture.LCID == 2058)
+            if (CultureInfo.CurrentUICulture.LCID == 2058)
             {
                 titleLabel.Text = "Por favor inicie sesión abajo";
                 usernameLabel.Text = "Nombre de usuario";
@@ -31,10 +31,9 @@ namespace C969___Software_II
             }
         }
 
-        static public int UserFound(string userName, string password)
+        static public int FineUser(string userName, string password)
         {
-            string connectionString = "server=52.206.157.109 ;database=U05jyp;uid=U05jyp;pwd=53688524521;";
-            MySqlConnection c = new MySqlConnection(connectionString);
+            MySqlConnection c = new MySqlConnection(DataHelper.conString);
             c.Open();
             MySqlCommand cmd = new MySqlCommand($"SELECT userId FROM user WHERE userName = '{userName}' AND password = '{password}'", c);
             MySqlDataReader rdr = cmd.ExecuteReader();
@@ -52,10 +51,11 @@ namespace C969___Software_II
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (UserFound(username.Text, password.Text) != 0)
+            if (FineUser(username.Text, password.Text) != 0)
             {
                 this.Hide();
                 MainForm MainForm = new MainForm();
+                MainForm.loginForm = this;
                 MainForm.Show();
             }
             else

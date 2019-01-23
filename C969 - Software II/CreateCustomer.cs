@@ -45,7 +45,7 @@ namespace C969___Software_II
             int addressId = createRecord(timestamp, userName, "address", $"'{addressTextbox.Text}', '', '{cityId}', '{zipTextbox.Text}', '{phoneTextbox.Text}'");
             createRecord(timestamp, userName, "customer", $"'{nameTextbox.Text}', '{addressId}', '{(activeYes.Checked ? 1 : 0)}'");
 
-            this.Close();
+            Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

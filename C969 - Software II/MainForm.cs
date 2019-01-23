@@ -12,6 +12,7 @@ namespace C969___Software_II
 {
     public partial class MainForm : Form
     {
+        public Login loginForm;
         public MainForm()
         {
             InitializeComponent();
@@ -25,12 +26,19 @@ namespace C969___Software_II
 
         private void updateCustomerButton_Click(object sender, EventArgs e)
         {
+            UpdateCustomer UpdateCustomer = new UpdateCustomer();
+            UpdateCustomer.Show();
 
         }
 
         private void deleteCustomerButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            loginForm.Close();
         }
     }
 }
