@@ -153,6 +153,7 @@
             this.addAppointment.TabIndex = 10;
             this.addAppointment.Text = "Add";
             this.addAppointment.UseVisualStyleBackColor = true;
+            this.addAppointment.Click += new System.EventHandler(this.addAppointment_Click);
             // 
             // updateAppointment
             // 
@@ -162,6 +163,7 @@
             this.updateAppointment.TabIndex = 11;
             this.updateAppointment.Text = "Update";
             this.updateAppointment.UseVisualStyleBackColor = true;
+            this.updateAppointment.Click += new System.EventHandler(this.updateAppointment_Click);
             // 
             // deleteAppointment
             // 
@@ -171,6 +173,7 @@
             this.deleteAppointment.TabIndex = 12;
             this.deleteAppointment.Text = "Delete";
             this.deleteAppointment.UseVisualStyleBackColor = true;
+            this.deleteAppointment.Click += new System.EventHandler(this.deleteAppointment_Click);
             // 
             // numberOfApps
             // 

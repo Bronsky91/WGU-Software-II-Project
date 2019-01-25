@@ -53,7 +53,7 @@ namespace C969___Software_II
             cmd = new MySqlCommand(recUpdate, c);
             int countryUpdated = cmd.ExecuteNonQuery();
 
-          c.Close();
+            c.Close();
 
             if (customerUpdated != 0 && addressUpdated != 0 && cityUpdated != 0 && countryUpdated != 0)
                 return true;
@@ -63,7 +63,7 @@ namespace C969___Software_II
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            int customerId = DataHelper.FindCustomer(searchBar.Text);
+            int customerId = DataHelper.findCustomer(searchBar.Text);
             if (customerId != 0)
             {
                 cForm = DataHelper.getCustomerDetails(customerId);

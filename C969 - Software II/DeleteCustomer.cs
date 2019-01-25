@@ -60,7 +60,7 @@ namespace C969___Software_II
         private void searchButton_Click(object sender, EventArgs e)
         {
             // Searches database for customer and displays data in labels
-            int customerId = DataHelper.FindCustomer(searchBar.Text);
+            int customerId = DataHelper.findCustomer(searchBar.Text);
             if (customerId != 0)
             {
                 customerDetails = DataHelper.getCustomerDetails(customerId);

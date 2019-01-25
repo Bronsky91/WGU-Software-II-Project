@@ -66,7 +66,31 @@ namespace C969___Software_II
             return newID(idList);
         }
 
-        static public int FindCustomer(string search)
+        static public int createRecord(string timestamp, string userName, string table, string partOfQuery, int userId = 0)
+        {
+            int recId = createID(table);
+            string recInsert;
+            if (userId == 0)
+            {
+                recInsert = $"INSERT INTO {table}" +
+                $" VALUES ('{recId}', {partOfQuery}, '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
+            }
+            else
+            {
+                recInsert = $"INSERT INTO {table} (appointmentId, customerId, start, end, type, userId, createDate, createdBy, lastUpdate, lastUpdateBy)" +
+                $" VALUES ('{recId}', {partOfQuery}, '{userId}', '{timestamp}', '{userName}', '{timestamp}', '{userName}')";
+            }
+
+            MySqlConnection c = new MySqlConnection(conString);
+            c.Open();
+            MySqlCommand cmd = new MySqlCommand(recInsert, c);
+            cmd.ExecuteNonQuery();
+            c.Close();
+
+            return recId;
+        }
+
+        static public int findCustomer(string search)
         {
             int customerId;
             string query;
@@ -144,7 +168,27 @@ namespace C969___Software_II
             return customerDict;
         }
 
-       
+        static public Dictionary<string, string> getAppointmentDetails(string appointmentId)
+        {
+            string query = $"SELECT * FROM appointment WHERE appointmentId = '{appointmentId}'";
+            MySqlConnection c = new MySqlConnection(DataHelper.conString);
+            c.Open();
+            MySqlCommand cmd = new MySqlCommand(query, c);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            rdr.Read();
+
+            Dictionary<string, string> appointmentDict = new Dictionary<string, string>();
+            // Customer Table Details
+            appointmentDict.Add("appointmentId", appointmentId);
+            appointmentDict.Add("customerId", rdr[1].ToString());
+            appointmentDict.Add("type", rdr[13].ToString());
+            appointmentDict.Add("start", rdr[7].ToString());
+            appointmentDict.Add("end", rdr[8].ToString());
+            rdr.Close();
+
+            return appointmentDict;
+        }
+
     }
 
 }

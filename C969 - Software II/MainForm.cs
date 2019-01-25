@@ -20,7 +20,7 @@ namespace C969___Software_II
             InitializeComponent();
             appointmentCalendar.DataSource = getCalendar(weekRadioButton.Checked);
         }
-
+        
         static public Array getCalendar(bool weekView)
         {
             MySqlConnection c = new MySqlConnection(DataHelper.conString);
@@ -82,7 +82,7 @@ namespace C969___Software_II
                     DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
                     if (startTime >= firstDayOfMonth && endTime < lastDayOfMonth)
                     {
-                        //  only include app that get here
+                        //  only include apps that get here
                         parsedAppointments.Add(app.Key, app.Value);
                     }
                 }
@@ -100,6 +100,11 @@ namespace C969___Software_II
             c.Close();
 
             return appointmentArray.ToArray();
+        }
+
+        public void updateCalendar()
+        {
+            appointmentCalendar.DataSource = getCalendar(weekRadioButton.Checked);
         }
 
         private void createCustomerButton_Click(object sender, EventArgs e)
@@ -127,7 +132,28 @@ namespace C969___Software_II
 
         private void weekRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            appointmentCalendar.DataSource = getCalendar(weekRadioButton.Checked);
+            updateCalendar();
+        }
+
+        private void addAppointment_Click(object sender, EventArgs e)
+        {
+            AddAppointment addAppointment = new AddAppointment();
+            addAppointment.mainFormObject = this;
+            addAppointment.Show();
+        }
+
+        private void updateAppointment_Click(object sender, EventArgs e)
+        {
+            UpdateAppointment updateAppointment = new UpdateAppointment();
+            updateAppointment.mainFormObject = this;
+            updateAppointment.Show();
+        }
+
+        private void deleteAppointment_Click(object sender, EventArgs e)
+        {
+            DeleteAppointment deleteAppointment = new DeleteAppointment();
+            deleteAppointment.mainFormObject = this;
+            deleteAppointment.Show();
         }
     }
 }
