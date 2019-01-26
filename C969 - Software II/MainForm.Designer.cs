@@ -99,7 +99,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(533, 99);
+            this.label2.Location = new System.Drawing.Point(572, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 13);
             this.label2.TabIndex = 5;
@@ -108,15 +108,15 @@
             // appointmentCalendar
             // 
             this.appointmentCalendar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.appointmentCalendar.Location = new System.Drawing.Point(425, 172);
+            this.appointmentCalendar.Location = new System.Drawing.Point(419, 171);
             this.appointmentCalendar.Name = "appointmentCalendar";
-            this.appointmentCalendar.Size = new System.Drawing.Size(348, 177);
+            this.appointmentCalendar.Size = new System.Drawing.Size(452, 177);
             this.appointmentCalendar.TabIndex = 6;
             // 
             // weekRadioButton
             // 
             this.weekRadioButton.AutoSize = true;
-            this.weekRadioButton.Location = new System.Drawing.Point(486, 135);
+            this.weekRadioButton.Location = new System.Drawing.Point(525, 134);
             this.weekRadioButton.Name = "weekRadioButton";
             this.weekRadioButton.Size = new System.Drawing.Size(80, 17);
             this.weekRadioButton.TabIndex = 7;
@@ -128,7 +128,7 @@
             // 
             this.monthRadioButton.AutoSize = true;
             this.monthRadioButton.Checked = true;
-            this.monthRadioButton.Location = new System.Drawing.Point(605, 135);
+            this.monthRadioButton.Location = new System.Drawing.Point(644, 134);
             this.monthRadioButton.Name = "monthRadioButton";
             this.monthRadioButton.Size = new System.Drawing.Size(81, 17);
             this.monthRadioButton.TabIndex = 8;
@@ -147,7 +147,7 @@
             // 
             // addAppointment
             // 
-            this.addAppointment.Location = new System.Drawing.Point(449, 378);
+            this.addAppointment.Location = new System.Drawing.Point(488, 377);
             this.addAppointment.Name = "addAppointment";
             this.addAppointment.Size = new System.Drawing.Size(75, 23);
             this.addAppointment.TabIndex = 10;
@@ -157,7 +157,7 @@
             // 
             // updateAppointment
             // 
-            this.updateAppointment.Location = new System.Drawing.Point(560, 378);
+            this.updateAppointment.Location = new System.Drawing.Point(599, 377);
             this.updateAppointment.Name = "updateAppointment";
             this.updateAppointment.Size = new System.Drawing.Size(75, 23);
             this.updateAppointment.TabIndex = 11;
@@ -167,7 +167,7 @@
             // 
             // deleteAppointment
             // 
-            this.deleteAppointment.Location = new System.Drawing.Point(665, 378);
+            this.deleteAppointment.Location = new System.Drawing.Point(704, 377);
             this.deleteAppointment.Name = "deleteAppointment";
             this.deleteAppointment.Size = new System.Drawing.Size(75, 23);
             this.deleteAppointment.TabIndex = 12;
@@ -206,7 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(883, 454);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numberOfApps);

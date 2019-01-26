@@ -189,6 +189,14 @@ namespace C969___Software_II
             return appointmentDict;
         }
 
+        static public string convertToTimezone(object dateTime)
+        {
+            DateTime utcDateTime = DateTime.Parse(dateTime.ToString());
+            DateTime localDateTime = utcDateTime.ToLocalTime();
+
+            return localDateTime.ToString("MM/dd/yyyy hh:mm tt");       
+        }
+
     }
 
 }

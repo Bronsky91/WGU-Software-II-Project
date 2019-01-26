@@ -26,7 +26,7 @@ namespace C969___Software_II
             int userId = DataHelper.getCurrentUserId();
             string username = DataHelper.getCurrentUserName();
             // 'customerId', 'start', 'end', 'type',
-            DataHelper.createRecord(timestamp, username, "appointment", $"'{customerIdTextBox.Text}', '{startTimePicker.Text}', '{endTimePicker.Text}', '{typeTextBox.Text}'", userId);
+            DataHelper.createRecord(timestamp, username, "appointment", $"'{customerIdTextBox.Text}', '{startTimePicker.Value.ToUniversalTime().ToString("u")}', '{endTimePicker.Value.ToUniversalTime().ToString("u")}', '{typeTextBox.Text}'", userId);
 
             mainFormObject.updateCalendar();
 

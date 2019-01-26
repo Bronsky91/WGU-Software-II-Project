@@ -57,8 +57,8 @@ namespace C969___Software_II
             Dictionary<string, string> updatedForm = new Dictionary<string, string>();
             updatedForm.Add("type", typeTextBox.Text);
             updatedForm.Add("customerId", customerIdTextBox.Text);
-            updatedForm.Add("start", startTimePicker.Text);
-            updatedForm.Add("end", endTimePicker.Text);
+            updatedForm.Add("start", startTimePicker.Value.ToUniversalTime().ToString("u"));
+            updatedForm.Add("end", endTimePicker.Value.ToUniversalTime().ToString("u"));
 
             if (updateAppointment(updatedForm))
             {

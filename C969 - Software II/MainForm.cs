@@ -19,8 +19,24 @@ namespace C969___Software_II
         {
             InitializeComponent();
             appointmentCalendar.DataSource = getCalendar(weekRadioButton.Checked);
+            reminderCheck(appointmentCalendar);
         }
-        
+
+        static public void reminderCheck(DataGridView calendar)
+        {
+            // Reminder Check
+            foreach (DataGridViewRow row in calendar.Rows)
+            {
+                DateTime now = DateTime.UtcNow;
+                DateTime start = DateTime.Parse(row.Cells[2].Value.ToString()).ToUniversalTime();
+                TimeSpan nowUntilStartOfApp = now - start;
+                if (nowUntilStartOfApp.TotalMinutes <= 15)
+                {
+                    MessageBox.Show($"Reminder: {row.Cells[1].Value} is within the next 15 min");
+                }
+            }
+        }
+
         static public Array getCalendar(bool weekView)
         {
             MySqlConnection c = new MySqlConnection(DataHelper.conString);
@@ -86,14 +102,14 @@ namespace C969___Software_II
                         parsedAppointments.Add(app.Key, app.Value);
                     }
                 }
-            }
+            }            
 
             // Forms final datasource of calendar that will be shown to user
             var appointmentArray = from row in parsedAppointments select new {
                 ID = row.Key,
                 Type = row.Value["type"],
-                StartTime = row.Value["start"],
-                EndTime = row.Value["end"],
+                StartTime = DataHelper.convertToTimezone(row.Value["start"]),
+                EndTime = DataHelper.convertToTimezone(row.Value["end"]),
                 Customer = row.Value["customerName"]
             };
 
