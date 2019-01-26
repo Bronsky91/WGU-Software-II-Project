@@ -92,6 +92,7 @@
     <Compile Include="AddAppointment.Designer.cs">
       <DependentUpon>AddAppointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="appException.cs" />
     <Compile Include="CreateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>

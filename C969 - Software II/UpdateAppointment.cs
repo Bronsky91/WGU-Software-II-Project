@@ -60,17 +60,35 @@ namespace C969___Software_II
             updatedForm.Add("start", startTimePicker.Value.ToUniversalTime().ToString("u"));
             updatedForm.Add("end", endTimePicker.Value.ToUniversalTime().ToString("u"));
 
-            if (updateAppointment(updatedForm))
-            {
-                mainFormObject.updateCalendar();
-                MessageBox.Show("Update Complete!");
-            }
-            else
-            {
-                MessageBox.Show("Update could not complete");
-            }
+            DateTime startTime = startTimePicker.Value.ToUniversalTime();
+            DateTime endTime = endTimePicker.Value.ToUniversalTime();
 
-            Close();
+            try
+            {
+                if (DataHelper.appHasConflict(startTime, endTime))
+                    throw new appException();
+                else
+                {
+                    try
+                    {
+                        if (DataHelper.appIsOutsideBusinessHours(startTime, endTime))
+                            throw new appException();
+                        else
+                        {
+                            if (updateAppointment(updatedForm))
+                            {
+                                mainFormObject.updateCalendar();
+                                MessageBox.Show("Update Complete!");
+                                Close();
+                            }
+                            else
+                                MessageBox.Show("Update could not complete");
+                        }
+                    }
+                    catch (appException ex) { ex.businessHours(); }
+                }
+            }
+            catch (appException ex) { ex.appOverlap(); }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace C969___Software_II
 {
     class DataHelper
     {
+        private static Dictionary<int, Hashtable> _appointments = new Dictionary<int, Hashtable>();
         private static int _currentUserId;
         private static string _currentUserName;
         public static string conString = "server=52.206.157.109 ;database=U05jyp;uid=U05jyp;pwd=53688524521;";
@@ -32,6 +34,16 @@ namespace C969___Software_II
         public static void setCurrentUserName(string currentUserName)
         {
             _currentUserName = currentUserName;
+        }
+
+        public static Dictionary<int, Hashtable> getAppointments()
+        {
+            return _appointments;
+        }
+
+        public static void setAppointments(Dictionary<int, Hashtable> appointments)
+        {
+            _appointments = appointments;
         }
 
         public static int newID(List<int> idList)
@@ -195,6 +207,27 @@ namespace C969___Software_II
             DateTime localDateTime = utcDateTime.ToLocalTime();
 
             return localDateTime.ToString("MM/dd/yyyy hh:mm tt");       
+        }
+
+
+        public static bool appHasConflict(DateTime startTime, DateTime endTime)
+        {
+            foreach (var app in DataHelper.getAppointments().Values)
+            {
+                if (startTime < DateTime.Parse(app["end"].ToString()) && DateTime.Parse(app["start"].ToString()) < endTime)
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool appIsOutsideBusinessHours(DateTime startTime, DateTime endTime)
+        {
+            DateTime startOfOutsideBusiness = DateTime.Today.AddHours(17).ToUniversalTime(); // 5pm - Start of Outside Business Hours
+            DateTime endOfOutsideBusiness = DateTime.Today.AddHours(8).ToUniversalTime(); // 8am - End of Outside Business Hours
+            if (startTime.TimeOfDay > endOfOutsideBusiness.TimeOfDay && endTime.TimeOfDay < startOfOutsideBusiness.TimeOfDay)
+                return false;
+
+            return true;
         }
 
     }

@@ -42,13 +42,13 @@ namespace C969___Software_II
             MySqlCommand cmd = new MySqlCommand(query, c);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
-            Dictionary<int, Dictionary<string, object>> appointments = new Dictionary<int, Dictionary<string, object>>();
+            Dictionary<int, Hashtable> appointments = new Dictionary<int, Hashtable>();
 
             // Creates a dictionary of all the appointments
             while (rdr.Read())
             {
 
-                Dictionary<string, object> appointment = new Dictionary<string, object>();
+                Hashtable appointment = new Hashtable();
                 appointment.Add("customerId", rdr[0]);
                 appointment.Add("type", rdr[1]);
                 appointment.Add("start", rdr[2]);
@@ -69,7 +69,7 @@ namespace C969___Software_II
                 rdr.Close();
             }
 
-            Dictionary<int, Dictionary<string, object>> parsedAppointments = new Dictionary<int, Dictionary<string, object>>();
+            Dictionary<int, Hashtable> parsedAppointments = new Dictionary<int, Hashtable>();
             // Adjusts appointments that will end up in calendar based on if the Week or Month view is chosen.
             foreach (var app in appointments)
             {
@@ -98,10 +98,11 @@ namespace C969___Software_II
                         parsedAppointments.Add(app.Key, app.Value);
                     }
                 }
-            }            
+            }
 
+            DataHelper.setAppointments(appointments);
             // Forms final datasource of calendar that will be shown to user
-            var appointmentArray = from row in parsedAppointments select new {
+            var appointmentArray = from row in parsedAppointments  select new {
                 ID = row.Key,
                 Type = row.Value["type"],
                 StartTime = DataHelper.convertToTimezone(row.Value["start"].ToString()),
