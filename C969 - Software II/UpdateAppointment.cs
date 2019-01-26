@@ -47,8 +47,8 @@ namespace C969___Software_II
             aForm = DataHelper.getAppointmentDetails(appointmentId);
             customerIdTextBox.Text = aForm["customerId"];
             typeTextBox.Text = aForm["type"];
-            startTimePicker.Value = DateTime.Parse(aForm["start"]);
-            endTimePicker.Value = DateTime.Parse(aForm["end"]);
+            startTimePicker.Value = DateTime.Parse(DataHelper.convertToTimezone(aForm["start"]));
+            endTimePicker.Value = DateTime.Parse(DataHelper.convertToTimezone(aForm["end"]));
 
         }
    

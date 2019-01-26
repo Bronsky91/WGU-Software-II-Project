@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,9 +31,9 @@ namespace C969___Software_II
                 DateTime now = DateTime.UtcNow;
                 DateTime start = DateTime.Parse(row.Cells[2].Value.ToString()).ToUniversalTime();
                 TimeSpan nowUntilStartOfApp = now - start;
-                if (nowUntilStartOfApp.TotalMinutes <= 15)
+                if (nowUntilStartOfApp.TotalMinutes >= -15 && nowUntilStartOfApp.TotalMinutes < 1)
                 {
-                    MessageBox.Show($"Reminder: {row.Cells[1].Value} is within the next 15 min");
+                    MessageBox.Show($"Reminder: You have a meeting with {row.Cells[4].Value} at {row.Cells[2].Value}");
                 }
             }
         }
@@ -108,8 +109,8 @@ namespace C969___Software_II
             var appointmentArray = from row in parsedAppointments select new {
                 ID = row.Key,
                 Type = row.Value["type"],
-                StartTime = DataHelper.convertToTimezone(row.Value["start"]),
-                EndTime = DataHelper.convertToTimezone(row.Value["end"]),
+                StartTime = DataHelper.convertToTimezone(row.Value["start"].ToString()),
+                EndTime = DataHelper.convertToTimezone(row.Value["end"].ToString()),
                 Customer = row.Value["customerName"]
             };
 
