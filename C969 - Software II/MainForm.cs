@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -22,10 +18,9 @@ namespace C969___Software_II
             appointmentCalendar.DataSource = getCalendar(weekRadioButton.Checked);
             reminderCheck(appointmentCalendar);
         }
-
+        
         static public void reminderCheck(DataGridView calendar)
         {
-            // Reminder Check
             foreach (DataGridViewRow row in calendar.Rows)
             {
                 DateTime now = DateTime.UtcNow;

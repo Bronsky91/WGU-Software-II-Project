@@ -31,7 +31,7 @@ namespace C969___Software_II
             }
         }
 
-        static public int FineUser(string userName, string password)
+        static public int FindUser(string userName, string password)
         {
             MySqlConnection c = new MySqlConnection(DataHelper.conString);
             c.Open();
@@ -51,11 +51,12 @@ namespace C969___Software_II
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (FineUser(username.Text, password.Text) != 0)
+            if (FindUser(username.Text, password.Text) != 0)
             {
                 this.Hide();
                 MainForm MainForm = new MainForm();
                 MainForm.loginForm = this;
+                Logger.writeUserLoginLog(DataHelper.getCurrentUserId());
                 MainForm.Show();
             }
             else
