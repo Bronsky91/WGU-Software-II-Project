@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace C969___Software_II
 {
-    class appException : ApplicationException
+    class appointmentException : ApplicationException
     {
         public void businessHours()
         {

@@ -208,28 +208,7 @@ namespace C969___Software_II
 
             return localDateTime.ToString("MM/dd/yyyy hh:mm tt");       
         }
-
-
-        public static bool appHasConflict(DateTime startTime, DateTime endTime)
-        {
-            foreach (var app in DataHelper.getAppointments().Values)
-            {
-                if (startTime < DateTime.Parse(app["end"].ToString()) && DateTime.Parse(app["start"].ToString()) < endTime)
-                    return true;
-            }
-            return false;
-        }
-
-        public static bool appIsOutsideBusinessHours(DateTime startTime, DateTime endTime)
-        {
-            DateTime startOfOutsideBusiness = DateTime.Today.AddHours(17).ToUniversalTime(); // 5pm - Start of Outside Business Hours
-            DateTime endOfOutsideBusiness = DateTime.Today.AddHours(8).ToUniversalTime(); // 8am - End of Outside Business Hours
-            if (startTime.TimeOfDay > endOfOutsideBusiness.TimeOfDay && endTime.TimeOfDay < startOfOutsideBusiness.TimeOfDay)
-                return false;
-
-            return true;
-        }
-
+        
     }
 
 }

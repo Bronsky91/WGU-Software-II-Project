@@ -51,7 +51,7 @@ namespace C969___Software_II
             endTimePicker.Value = DateTime.Parse(DataHelper.convertToTimezone(aForm["end"]));
 
         }
-   
+
         private void updateButton_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> updatedForm = new Dictionary<string, string>();
@@ -60,38 +60,17 @@ namespace C969___Software_II
             updatedForm.Add("start", startTimePicker.Value.ToUniversalTime().ToString("u"));
             updatedForm.Add("end", endTimePicker.Value.ToUniversalTime().ToString("u"));
 
-            DateTime startTime = startTimePicker.Value.ToUniversalTime();
-            DateTime endTime = endTimePicker.Value.ToUniversalTime();
-
-            try
+            if (updateAppointment(updatedForm))
             {
-                if (DataHelper.appHasConflict(startTime, endTime))
-                    throw new appException();
-                else
-                {
-                    try
-                    {
-                        if (DataHelper.appIsOutsideBusinessHours(startTime, endTime))
-                            throw new appException();
-                        else
-                        {
-                            if (updateAppointment(updatedForm))
-                            {
-                                mainFormObject.updateCalendar();
-                                MessageBox.Show("Update Complete!");
-                                Close();
-                            }
-                            else
-                                MessageBox.Show("Update could not complete");
-                        }
-                    }
-                    catch (appException ex) { ex.businessHours(); }
-                }
+                mainFormObject.updateCalendar();
+                MessageBox.Show("Update Complete!");
+                Close();
             }
-            catch (appException ex) { ex.appOverlap(); }
+            else
+                MessageBox.Show("Update could not complete");
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+            private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
         }

@@ -42,8 +42,8 @@
             this.updateAppointment = new System.Windows.Forms.Button();
             this.deleteAppointment = new System.Windows.Forms.Button();
             this.numberOfApps = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.userSchedules = new System.Windows.Forms.Button();
+            this.customerReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentCalendar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -183,32 +183,34 @@
             this.numberOfApps.TabIndex = 13;
             this.numberOfApps.Text = "Number of Appointments";
             this.numberOfApps.UseVisualStyleBackColor = true;
+            this.numberOfApps.Click += new System.EventHandler(this.numberOfApps_Click);
             // 
-            // button1
+            // userSchedules
             // 
-            this.button1.Location = new System.Drawing.Point(255, 184);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.userSchedules.Location = new System.Drawing.Point(227, 184);
+            this.userSchedules.Name = "userSchedules";
+            this.userSchedules.Size = new System.Drawing.Size(148, 23);
+            this.userSchedules.TabIndex = 14;
+            this.userSchedules.Text = "Consultant Schedules";
+            this.userSchedules.UseVisualStyleBackColor = true;
+            this.userSchedules.Click += new System.EventHandler(this.userSchedules_Click);
             // 
-            // button2
+            // customerReport
             // 
-            this.button2.Location = new System.Drawing.Point(255, 233);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.customerReport.Location = new System.Drawing.Point(227, 233);
+            this.customerReport.Name = "customerReport";
+            this.customerReport.Size = new System.Drawing.Size(148, 23);
+            this.customerReport.TabIndex = 15;
+            this.customerReport.Text = "Customer Report";
+            this.customerReport.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 454);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.customerReport);
+            this.Controls.Add(this.userSchedules);
             this.Controls.Add(this.numberOfApps);
             this.Controls.Add(this.deleteAppointment);
             this.Controls.Add(this.updateAppointment);
@@ -248,7 +250,7 @@
         private System.Windows.Forms.Button updateAppointment;
         private System.Windows.Forms.Button deleteAppointment;
         private System.Windows.Forms.Button numberOfApps;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button userSchedules;
+        private System.Windows.Forms.Button customerReport;
     }
 }

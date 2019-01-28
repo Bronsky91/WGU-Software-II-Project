@@ -21,6 +21,28 @@ namespace C969___Software_II
 
         public MainForm mainFormObject;
 
+        public static bool appHasConflict(DateTime startTime, DateTime endTime)
+        {
+            foreach (var app in DataHelper.getAppointments().Values)
+            {
+                if (startTime < DateTime.Parse(app["end"].ToString()) && DateTime.Parse(app["start"].ToString()) < endTime)
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool appIsOutsideBusinessHours(DateTime startTime, DateTime endTime)
+        {
+            startTime = startTime.ToLocalTime();
+            endTime = endTime.ToLocalTime();
+            DateTime businessStart = DateTime.Today.AddHours(8); // 8am
+            DateTime businessEnd = DateTime.Today.AddHours(17); // 5pm
+            if (startTime.TimeOfDay > businessStart.TimeOfDay && startTime.TimeOfDay < businessEnd.TimeOfDay &&
+                endTime.TimeOfDay > businessStart.TimeOfDay && endTime.TimeOfDay < businessEnd.TimeOfDay)
+                return false;
+
+            return true;
+        }
 
         private void addButton_Click(object sender, EventArgs e)
         {
@@ -32,14 +54,14 @@ namespace C969___Software_II
 
             try
             {
-                if(DataHelper.appHasConflict(startTime, endTime))
-                    throw new appException();
+                if(appHasConflict(startTime, endTime))
+                    throw new appointmentException();
                 else
                 {
                     try
                     {
-                        if (DataHelper.appIsOutsideBusinessHours(startTime, endTime))
-                            throw new appException();
+                        if (appIsOutsideBusinessHours(startTime, endTime))
+                            throw new appointmentException();
                         else
                         {
                             DataHelper.createRecord(timestamp, username, "appointment", $"'{customerIdTextBox.Text}', '{startTimePicker.Value.ToUniversalTime().ToString("u")}', '{endTimePicker.Value.ToUniversalTime().ToString("u")}', '{typeTextBox.Text}'", userId);
@@ -47,15 +69,20 @@ namespace C969___Software_II
                             Close();
                         }
                     }
-                    catch (appException ex){ ex.businessHours(); }
+                    catch (appointmentException ex){ ex.businessHours(); }
                 }
             }
-            catch (appException ex){ ex.appOverlap(); }
+            catch (appointmentException ex){ ex.appOverlap(); }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void AddAppointment_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

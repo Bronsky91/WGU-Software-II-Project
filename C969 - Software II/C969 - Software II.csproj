@@ -92,7 +92,7 @@
     <Compile Include="AddAppointment.Designer.cs">
       <DependentUpon>AddAppointment.cs</DependentUpon>
     </Compile>
-    <Compile Include="appException.cs" />
+    <Compile Include="appointmentException.cs" />
     <Compile Include="CreateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +125,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NumberOfAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NumberOfAppointments.Designer.cs">
+      <DependentUpon>NumberOfAppointments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateAppointment.cs">
@@ -138,6 +144,12 @@
     </Compile>
     <Compile Include="UpdateCustomer.Designer.cs">
       <DependentUpon>UpdateCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserSchedules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserSchedules.Designer.cs">
+      <DependentUpon>UserSchedules.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddAppointment.resx">
       <DependentUpon>AddAppointment.cs</DependentUpon>
@@ -157,6 +169,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NumberOfAppointments.resx">
+      <DependentUpon>NumberOfAppointments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -171,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateCustomer.resx">
       <DependentUpon>UpdateCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserSchedules.resx">
+      <DependentUpon>UserSchedules.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

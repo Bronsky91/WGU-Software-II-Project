@@ -38,7 +38,7 @@ namespace C969___Software_II
             MySqlConnection c = new MySqlConnection(DataHelper.conString);
             c.Open();
             // Queries the DB for all the appointments related to the logged in user
-            string query = $"SELECT customerId, type, start, end, appointmentId FROM appointment WHERE userid = '{DataHelper.getCurrentUserId()}'";
+            string query = $"SELECT customerId, type, start, end, appointmentId, userId FROM appointment WHERE userid = '{DataHelper.getCurrentUserId()}'";
             MySqlCommand cmd = new MySqlCommand(query, c);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -53,13 +53,26 @@ namespace C969___Software_II
                 appointment.Add("type", rdr[1]);
                 appointment.Add("start", rdr[2]);
                 appointment.Add("end", rdr[3]);
+                appointment.Add("userId", rdr[5]);
 
                 appointments.Add(Convert.ToInt32(rdr[4]), appointment);
+
             }
             rdr.Close();
 
-            // Assigns the proper Customer to each Appointment dictionary
-            foreach(var app in appointments.Values)
+            // Assigns the proper Username to each Appointment dictionary
+            foreach (var app in appointments.Values)
+            {
+                query = $"SELECT userName FROM user WHERE userId = '{app["userId"]}'";
+                cmd = new MySqlCommand(query, c);
+                rdr = cmd.ExecuteReader();
+                rdr.Read();
+                app.Add("userName", rdr[0]);
+                rdr.Close();
+            }
+
+            // Assigns the proper CustomerName to each Appointment dictionary
+            foreach (var app in appointments.Values)
             {
                 query = $"SELECT customerName FROM customer WHERE customerId = '{app["customerId"]}'";
                 cmd = new MySqlCommand(query, c);
@@ -167,6 +180,18 @@ namespace C969___Software_II
             DeleteAppointment deleteAppointment = new DeleteAppointment();
             deleteAppointment.mainFormObject = this;
             deleteAppointment.Show();
+        }
+
+        private void numberOfApps_Click(object sender, EventArgs e)
+        {
+            NumberOfAppointments numberOfAppointments = new NumberOfAppointments();
+            numberOfAppointments.Show();
+        }
+
+        private void userSchedules_Click(object sender, EventArgs e)
+        {
+            UserSchedules userSchedules = new UserSchedules();
+            userSchedules.Show();
         }
     }
 }

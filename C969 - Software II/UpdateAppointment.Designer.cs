@@ -46,7 +46,7 @@
             // 
             // endTimePicker
             // 
-            this.endTimePicker.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+            this.endTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.endTimePicker.Location = new System.Drawing.Point(141, 266);
             this.endTimePicker.Name = "endTimePicker";
@@ -55,7 +55,7 @@
             // 
             // startTimePicker
             // 
-            this.startTimePicker.CustomFormat = "yyyy-MM-dd hh:mm:ss";
+            this.startTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.startTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.startTimePicker.Location = new System.Drawing.Point(141, 217);
             this.startTimePicker.Name = "startTimePicker";

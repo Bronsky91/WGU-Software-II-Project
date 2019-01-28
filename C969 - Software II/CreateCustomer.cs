@@ -24,14 +24,26 @@ namespace C969___Software_II
         {
             string timestamp = DataHelper.createTimestamp();
             string userName = DataHelper.getCurrentUserName();
+            if (string.IsNullOrEmpty(countryTextbox.Text) ||
+                string.IsNullOrEmpty(cityTextbox.Text) ||
+                string.IsNullOrEmpty(addressTextbox.Text) ||
+                string.IsNullOrEmpty(cityTextbox.Text) ||
+                string.IsNullOrEmpty(zipTextbox.Text) ||
+                string.IsNullOrEmpty(phoneTextbox.Text) ||
+                string.IsNullOrEmpty(nameTextbox.Text) ||
+                (activeYes.Checked == false && activeNo.Checked == false))
+            {
+                MessageBox.Show("Please enter all fields");
+            }
+            else
+            {
+                int countryId = DataHelper.createRecord(timestamp, userName, "country", $"'{countryTextbox.Text}'");
+                int cityId = DataHelper.createRecord(timestamp, userName, "city", $"'{cityTextbox.Text}', '{countryId}'");
+                int addressId = DataHelper.createRecord(timestamp, userName, "address", $"'{addressTextbox.Text}', '', '{cityId}', '{zipTextbox.Text}', '{phoneTextbox.Text}'");
+                DataHelper.createRecord(timestamp, userName, "customer", $"'{nameTextbox.Text}', '{addressId}', '{(activeYes.Checked ? 1 : 0)}'");
 
-            // TODO: Create checks to see if fields are blank before running these creates.
-            int countryId = DataHelper.createRecord(timestamp, userName, "country", $"'{countryTextbox.Text}'");
-            int cityId = DataHelper.createRecord(timestamp, userName, "city", $"'{cityTextbox.Text}', '{countryId}'");
-            int addressId = DataHelper.createRecord(timestamp, userName, "address", $"'{addressTextbox.Text}', '', '{cityId}', '{zipTextbox.Text}', '{phoneTextbox.Text}'");
-            DataHelper.createRecord(timestamp, userName, "customer", $"'{nameTextbox.Text}', '{addressId}', '{(activeYes.Checked ? 1 : 0)}'");
-
-            Close();
+                Close();
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
