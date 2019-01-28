@@ -18,9 +18,9 @@ namespace C969___Software_II
         public int quantity;
     }
 
-    public partial class NumberOfAppointments : Form
+    public partial class NumberOfAppointmentsReport : Form
     {
-        public NumberOfAppointments()
+        public NumberOfAppointmentsReport()
         {
             InitializeComponent();
             appReport.DataSource = getReport();
@@ -34,7 +34,6 @@ namespace C969___Software_II
             months.Add(1, "January"); months.Add(2, "February"); months.Add(3, "March"); months.Add(4, "April"); months.Add(5, "May"); months.Add(6, "June");
             months.Add(7, "July"); months.Add(8, "August"); months.Add(9, "September"); months.Add(10, "October"); months.Add(11, "November"); months.Add(12, "December");
 
-            // Places each appointment type and month into a List of hashtables
             foreach (var app in DataHelper.getAppointments().Values)
             {
                 int appMonth = DateTime.Parse(app["start"].ToString()).Month;
@@ -59,7 +58,6 @@ namespace C969___Software_II
                     appReports.Add(appReport);
                 }
             }
-            var test = appReports;
           
             var appointmentArray = from row in appReports select new {
                 Month = row.month,

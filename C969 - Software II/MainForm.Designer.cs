@@ -203,6 +203,7 @@
             this.customerReport.TabIndex = 15;
             this.customerReport.Text = "Customer Report";
             this.customerReport.UseVisualStyleBackColor = true;
+            this.customerReport.Click += new System.EventHandler(this.customerReport_Click);
             // 
             // MainForm
             // 

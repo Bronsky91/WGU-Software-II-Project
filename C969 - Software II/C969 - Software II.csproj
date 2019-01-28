@@ -99,6 +99,12 @@
     <Compile Include="CreateCustomer.Designer.cs">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomerReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerReport.Designer.cs">
+      <DependentUpon>CustomerReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataHelper.cs" />
     <Compile Include="DeleteAppointment.cs">
       <SubType>Form</SubType>
@@ -125,11 +131,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NumberOfAppointments.cs">
+    <Compile Include="NumberOfAppointmentsReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NumberOfAppointments.Designer.cs">
-      <DependentUpon>NumberOfAppointments.cs</DependentUpon>
+    <Compile Include="NumberOfAppointmentsReport.Designer.cs">
+      <DependentUpon>NumberOfAppointmentsReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +163,9 @@
     <EmbeddedResource Include="CreateCustomer.resx">
       <DependentUpon>CreateCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomerReport.resx">
+      <DependentUpon>CustomerReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeleteAppointment.resx">
       <DependentUpon>DeleteAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,8 +178,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NumberOfAppointments.resx">
-      <DependentUpon>NumberOfAppointments.cs</DependentUpon>
+    <EmbeddedResource Include="NumberOfAppointmentsReport.resx">
+      <DependentUpon>NumberOfAppointmentsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

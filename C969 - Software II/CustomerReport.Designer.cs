@@ -1,6 +1,6 @@
 ﻿namespace C969___Software_II
 {
-    partial class NumberOfAppointments
+    partial class CustomerReport
     {
         /// <summary>
         /// Required designer variable.
@@ -29,37 +29,37 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.appReport = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.appReport)).BeginInit();
+            this.customerReportView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.customerReportView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(133, 37);
+            this.label1.Location = new System.Drawing.Point(188, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 13);
+            this.label1.Size = new System.Drawing.Size(145, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Number of appointment types by month";
+            this.label1.Text = "Customers with Appointments";
             // 
-            // appReport
+            // customerReportView
             // 
-            this.appReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.appReport.Location = new System.Drawing.Point(63, 87);
-            this.appReport.Name = "appReport";
-            this.appReport.Size = new System.Drawing.Size(366, 311);
-            this.appReport.TabIndex = 1;
+            this.customerReportView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.customerReportView.Location = new System.Drawing.Point(55, 92);
+            this.customerReportView.Name = "customerReportView";
+            this.customerReportView.Size = new System.Drawing.Size(464, 323);
+            this.customerReportView.TabIndex = 1;
             // 
-            // NumberOfAppointments
+            // CustomerReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 435);
-            this.Controls.Add(this.appReport);
+            this.ClientSize = new System.Drawing.Size(577, 462);
+            this.Controls.Add(this.customerReportView);
             this.Controls.Add(this.label1);
-            this.Name = "NumberOfAppointments";
-            this.Text = "NumberOfAppointments";
-            ((System.ComponentModel.ISupportInitialize)(this.appReport)).EndInit();
+            this.Name = "CustomerReport";
+            this.Text = "CustomerReport";
+            ((System.ComponentModel.ISupportInitialize)(this.customerReportView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -68,6 +68,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView appReport;
+        private System.Windows.Forms.DataGridView customerReportView;
     }
 }

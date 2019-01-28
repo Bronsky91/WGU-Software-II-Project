@@ -184,7 +184,7 @@ namespace C969___Software_II
 
         private void numberOfApps_Click(object sender, EventArgs e)
         {
-            NumberOfAppointments numberOfAppointments = new NumberOfAppointments();
+            NumberOfAppointmentsReport numberOfAppointments = new NumberOfAppointmentsReport();
             numberOfAppointments.Show();
         }
 
@@ -192,6 +192,12 @@ namespace C969___Software_II
         {
             UserSchedules userSchedules = new UserSchedules();
             userSchedules.Show();
+        }
+
+        private void customerReport_Click(object sender, EventArgs e)
+        {
+            CustomerReport customerReport = new CustomerReport();
+            customerReport.Show();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace C969___Software_II
         public static Array getReport()
         {
             Dictionary<int, Hashtable> userReport = DataHelper.getAppointments();
-
+            
             var appointmentArray = from row in userReport
                                    select new
                                    {
@@ -41,7 +41,7 @@ namespace C969___Software_II
                                        StartTime = DataHelper.convertToTimezone(row.Value["start"].ToString()),
                                        EndTime = DataHelper.convertToTimezone(row.Value["end"].ToString()),
                                        Customer = row.Value["customerName"]
-                                   };
+        };
 
             return appointmentArray.ToArray();
         }
